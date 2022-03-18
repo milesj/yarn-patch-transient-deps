@@ -1,0 +1,15 @@
+diff --git a/build/commands/link/link.js b/build/commands/link/link.js
+index 9f0468ba3b7b71885b8ed31415a763f54adc15f7..82085e0913b48464b0a77fb91150f6cb9b8c8f26 100644
+--- a/build/commands/link/link.js
++++ b/build/commands/link/link.js
+@@ -71,6 +71,10 @@ async function link([rawPackageName], ctx, opts) {
+     // @ts-ignore
+     platforms = (0, _lodash().pick)(platforms, opts.platforms);
+ 
++    // We filter down the platforms but dont apply it to the context,
++    // which results in ios still being targeted elsewhere.
++    ctx.platforms = platforms;
++
+     _cliTools().logger.debug('Skipping selected platforms');
+   }
+ 
